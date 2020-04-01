@@ -9,8 +9,17 @@ class OverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColorDark,
-        title: Text('Overview')
+        brightness: Brightness.dark,
+        iconTheme: IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        backgroundColor: mainColor2,
+        title: Text(
+          'Overview',
+          style: TextStyle(
+            color: Colors.white
+          ),
+        )
       ),
       body: Container()
     );

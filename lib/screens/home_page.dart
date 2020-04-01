@@ -22,22 +22,45 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: mainColor,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              SizedBox(height: 20.0),
-              Text(
-                'Tracking COVID - 19',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.bold
-                )
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              decoration: BoxDecoration(
+                color: mainColor,
               ),
-              SizedBox(height: 30.0),
-              IntrinsicHeight(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: 40.0),
+                  Text(
+                    'COVID - 19',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold
+                    )
+                  ),
+                  SizedBox(height: 40.0),
+                  Text(
+                    'Daily updates on the spread of the coronavirus throughout the world, as well as preventative measures and how you can help do your part to slow the spread',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold
+                    )
+                  ),
+                  SizedBox(height: 20.0),
+                ]
+              )
+            ),
+            IntrinsicHeight(
+              child: Container(
+                padding: EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -56,9 +79,16 @@ class _HomePageState extends State<HomePage> {
                     )
                   ],
                 )
-              ),
-            ],
-          ),
+              )
+            ),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+              )
+            )
+          ],
         ),
       ),
     );

@@ -13,15 +13,15 @@ import 'package:covid_tracker/constants/colors.dart';
 
 void main() {
   runApp(MyApp());
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    systemNavigationBarIconBrightness: Brightness.light
-  ));
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light
+    ));
     return MaterialApp(
       title: 'Covid Tracker',
       theme: ThemeData(

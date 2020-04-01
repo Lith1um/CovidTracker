@@ -9,8 +9,17 @@ class CountriesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColorDark,
-        title: Text('Countries')
+        brightness: Brightness.dark,
+        iconTheme: IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        backgroundColor: mainColor2,
+        title: Text(
+          'Countries',
+          style: TextStyle(
+            color: Colors.white
+          ),
+        )
       ),
       body: Container()
     );

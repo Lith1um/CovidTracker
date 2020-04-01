@@ -1,7 +1,7 @@
-import 'dart:developer';
-
+// Material
 import 'package:flutter/material.dart';
 
+// Consts
 import 'package:covid_tracker/constants/colors.dart';
 
 class Tile extends StatelessWidget {
@@ -17,14 +17,14 @@ class Tile extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          color: mainColorDark,
+          color: mainColor2,
           borderRadius: BorderRadius.all(Radius.circular(5.0))
         ),
         child: Material(
           color: Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            splashColor: mainColorAccent,
+            splashColor: mainColor2Accent,
             onTap: () {
               if (pageToLoad != null) {
                 Navigator.push(
