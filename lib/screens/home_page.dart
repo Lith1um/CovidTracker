@@ -20,76 +20,72 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mainColor,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              decoration: BoxDecoration(
-                color: mainColor,
-              ),
-              child: Column(
+      appBar: AppBar(
+        brightness: Brightness.light,
+        elevation: 0.0,
+        iconTheme: IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        backgroundColor: PurpleScheme.mainColorAccent,
+        title: Text(
+          'COVID-19',
+          style: TextStyle(
+            color: PurpleScheme.mainColorDark,
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold
+          ),
+        )
+      ),
+      backgroundColor: Colors.white,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            decoration: BoxDecoration(
+              color: PurpleScheme.mainColorAccent,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(height: 40.0),
+                Text(
+                  'Daily updates on the spread of the coronavirus throughout the world, as well as preventative measures and how you can help do your part to slow the spread',
+                  style: TextStyle(
+                    color: PurpleScheme.mainColorDark,
+                    fontSize: 14.0
+                  )
+                ),
+                SizedBox(height: 20.0),
+              ]
+            )
+          ),
+          Image.asset('assets/images/globe.jpg'),
+          SizedBox(height: 20.0),
+          IntrinsicHeight(
+            child: Container(
+              padding: EdgeInsets.all(16.0),
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(height: 40.0),
-                  Text(
-                    'COVID - 19',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold
-                    )
+                  Tile(
+                    title: 'Overview',
+                    summary: 'View whole world statistics',
+                    icon: Icons.language,
+                    pageToLoad: OverviewPage(),
                   ),
-                  SizedBox(height: 40.0),
-                  Text(
-                    'Daily updates on the spread of the coronavirus throughout the world, as well as preventative measures and how you can help do your part to slow the spread',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold
-                    )
-                  ),
-                  SizedBox(height: 20.0),
-                ]
-              )
-            ),
-            IntrinsicHeight(
-              child: Container(
-                padding: EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Tile(
-                      title: 'Overview',
-                      summary: 'View whole world statistics',
-                      icon: Icons.language,
-                      pageToLoad: OverviewPage(),
-                    ),
-                    SizedBox(width: 16.0),
-                    Tile(
-                      title: 'Countries',
-                      summary: 'View statistics for indiviual countries',
-                      icon: Icons.assessment,
-                      pageToLoad: CountriesPage(),
-                    )
-                  ],
-                )
-              )
-            ),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
+                  SizedBox(width: 16.0),
+                  Tile(
+                    title: 'Countries',
+                    summary: 'View statistics for indiviual countries',
+                    icon: Icons.assessment,
+                    pageToLoad: CountriesPage(),
+                  )
+                ],
               )
             )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

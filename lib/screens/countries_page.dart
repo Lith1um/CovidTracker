@@ -13,7 +13,7 @@ class CountriesPage extends StatelessWidget {
         iconTheme: IconThemeData(
           color: Colors.white, //change your color here
         ),
-        backgroundColor: mainColor2,
+        backgroundColor: PurpleScheme.mainColor,
         title: Text(
           'Countries',
           style: TextStyle(

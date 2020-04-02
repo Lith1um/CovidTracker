@@ -17,14 +17,14 @@ class Tile extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          color: mainColor2,
+          color: PurpleScheme.mainColor,
           borderRadius: BorderRadius.all(Radius.circular(5.0))
         ),
         child: Material(
           color: Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            splashColor: mainColor2Accent,
+            splashColor: PurpleScheme.mainColorAccent,
             onTap: () {
               if (pageToLoad != null) {
                 Navigator.push(
@@ -41,7 +41,7 @@ class Tile extends StatelessWidget {
                   Icon(
                     icon,
                     size: 32.0,
-                    color: Colors.white,
+                    color: PurpleScheme.compColor,
                   ),
                   SizedBox(
                     height: 24.0,
