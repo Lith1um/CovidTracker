@@ -17,7 +17,7 @@ class Tile extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          color: PurpleScheme.mainColor,
+          color: PurpleScheme.mainColorDark,
           borderRadius: BorderRadius.all(Radius.circular(5.0))
         ),
         child: Material(
