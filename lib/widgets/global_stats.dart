@@ -1,5 +1,6 @@
-// Flutter
+// Libs
 import 'package:flutter/material.dart';
+import 'package:date_format/date_format.dart';
 
 // Widgets
 import 'package:covid_tracker/widgets/stat_tile.dart';
@@ -91,7 +92,9 @@ class GlobalStats extends StatelessWidget {
   }
 
   String getDateTime(int timestamp) {
-    var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
-    return date.toString().substring(0, date.toString().length - 4);
+    return formatDate(
+      DateTime.fromMillisecondsSinceEpoch(timestamp),
+      [dd, ' ', M, ' ', yyyy, ' ', HH, ':', nn, am]
+    );
   }
 }
