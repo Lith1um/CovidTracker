@@ -55,14 +55,12 @@ class GlobalStats extends StatelessWidget {
               name: 'Cases',
               value: stats.cases
             ),
-            SizedBox(width: 1.0),
             StatTile(
               name: 'Deaths',
               value: stats.deaths
             ),
           ]
         ),
-        SizedBox(height: 1.0),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -70,7 +68,6 @@ class GlobalStats extends StatelessWidget {
               name: 'Recovered',
               value: stats.recovered
             ),
-            SizedBox(width: 1.0),
             StatTile(
               name: 'Active',
               value: stats.active
@@ -86,7 +83,7 @@ class GlobalStats extends StatelessWidget {
               fontSize: 12.0
             ),
           ),
-        )
+        ),
       ]
     );
   }
