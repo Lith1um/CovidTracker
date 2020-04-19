@@ -60,6 +60,8 @@ class _CountriesPageState extends State<CountriesPage> {
         future: futureCountriesStats,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            List<GlobalCovid> countries = filterCountries(snapshot.data);
+
             return Column(
               children: [
                 Padding(
@@ -73,25 +75,25 @@ class _CountriesPageState extends State<CountriesPage> {
                   ),
                 ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [for(GlobalCovid country in filterCountries(snapshot.data))
-                        ListTile(
-                          title: Text(
-                            country.country,
-                            style: TextStyle(
-                              fontSize: 20.0
-                            ),
+                  child: ListView.separated(
+                    itemCount: countries.length,
+                    itemBuilder: (context, index) =>
+                      ListTile(
+                        title: Text(
+                          countries[index].country,
+                          style: TextStyle(
+                            fontSize: 20.0
                           ),
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => 
-                              OverviewPage(country: country.country))
-                          )
+                        ),
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => 
+                            OverviewPage(country: countries[index].country))
                         )
-                      ]
-                    )
-                  )
+                      ),
+                    separatorBuilder: (context, index) =>
+                      Divider()
+                  ),
                 )
               ]
             );
