@@ -98,7 +98,7 @@ class _OverviewPageState extends State<OverviewPage> {
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
                   }
-                  return LoadingSection(color: PurpleScheme.mainColor);
+                  return Container();
                 },
               ),
             ),
