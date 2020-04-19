@@ -14,50 +14,24 @@ import 'package:covid_tracker/constants/colors.dart';
 class GlobalStats extends StatelessWidget {
   final GlobalCovid stats;
 
-  const GlobalStats({this.stats});
+  const GlobalStats({@required this.stats});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                height: 24.0,
-              ),
-              Text(
-                "Affected Countries",
-                style: TextStyle(
-                  color: PurpleScheme.mainColorDark,
-                  fontSize: 24.0
-                ),
-              ),
-              SizedBox(
-                height: 8.0,
-              ),
-              Text(
-                "${stats.affectedCountries}",
-                style: TextStyle(
-                  color: PurpleScheme.mainColorDark,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 36.0
-                ),
-              ),
-            ]
-          )
-        ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             StatTile(
               name: 'Cases',
-              value: stats.cases
+              value: stats.cases,
+              deltaValue: stats.todayCases,
             ),
             StatTile(
               name: 'Deaths',
-              value: stats.deaths
+              value: stats.deaths,
+              deltaValue: stats.todayDeaths,
             ),
           ]
         ),
@@ -74,7 +48,7 @@ class GlobalStats extends StatelessWidget {
             ),
           ]
         ),
-        SizedBox(height: 16.0),
+        SizedBox(height: 8.0),
         Center(
           child: Text(
             'Last updated: ${getDateTime(stats.updated)}',
@@ -84,6 +58,7 @@ class GlobalStats extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(height: 16.0),
       ]
     );
   }

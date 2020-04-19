@@ -7,15 +7,20 @@ import 'package:covid_tracker/constants/colors.dart';
 class StatTile extends StatelessWidget {
   final String name;
   final int value;
+  final int deltaValue;
 
-  const StatTile({this.name, this.value});
+  const StatTile({
+    @required this.name,
+    @required this.value,
+    this.deltaValue
+  });
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
         color: Colors.white,
-        padding: EdgeInsets.all(24.0),
+        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -40,6 +45,18 @@ class StatTile extends StatelessWidget {
                 fontSize: 30.0
               ),
             ),
+            if (deltaValue != null) ...[
+              SizedBox(
+                height: 4.0,
+              ),
+              Text(
+                "+$deltaValue today",
+                style: TextStyle(
+                  color: PurpleScheme.mainColorDark,
+                  fontSize: 16.0
+                ),
+              ),
+            ]
           ]
         )
       )

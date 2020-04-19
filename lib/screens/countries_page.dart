@@ -1,10 +1,45 @@
 // Material
+import 'package:covid_tracker/screens/overview_page.dart';
 import 'package:flutter/material.dart';
+
+// Services
+import 'package:covid_tracker/services/novel_covid.dart';
+
+// Widgets
+import 'package:covid_tracker/widgets/loading_section.dart';
+
+// Models
+import 'package:covid_tracker/models/global_covid.dart';
 
 // Colors
 import 'package:covid_tracker/constants/colors.dart';
 
-class CountriesPage extends StatelessWidget {
+class CountriesPage extends StatefulWidget {
+  @override
+  _CountriesPageState createState() => _CountriesPageState();
+}
+
+class _CountriesPageState extends State<CountriesPage> {
+  Future<List<GlobalCovid>> futureCountriesStats;
+  String _searchTerm = '';
+
+  @override
+  void initState() {
+    super.initState();
+    futureCountriesStats = fetchCountriesStats();
+  }
+
+  void onSearchTermChanged(String value) {
+    setState(() => _searchTerm = value);
+  }
+
+  List<GlobalCovid> filterCountries(List<GlobalCovid> countries) {
+    return countries.where((item) => item.country
+      .toLowerCase()
+      .contains(_searchTerm.toLowerCase()))
+    .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +56,51 @@ class CountriesPage extends StatelessWidget {
           ),
         )
       ),
-      body: Container()
+      body: FutureBuilder<List<GlobalCovid>>(
+        future: futureCountriesStats,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                    child: TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Search',
+                      icon: Icon(Icons.search),
+                    ),
+                    onChanged: onSearchTermChanged,
+                  ),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [for(GlobalCovid country in filterCountries(snapshot.data))
+                        ListTile(
+                          title: Text(
+                            country.country,
+                            style: TextStyle(
+                              fontSize: 20.0
+                            ),
+                          ),
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => 
+                              OverviewPage(country: country.country))
+                          )
+                        )
+                      ]
+                    )
+                  )
+                )
+              ]
+            );
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+          return LoadingSection(color: PurpleScheme.mainColor);
+        },
+      ),
     );
   }
 }

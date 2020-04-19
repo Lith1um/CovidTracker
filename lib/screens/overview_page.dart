@@ -17,6 +17,10 @@ import 'package:covid_tracker/models/historical_covid.dart';
 import 'package:covid_tracker/constants/colors.dart';
 
 class OverviewPage extends StatefulWidget {
+  final String country;
+
+  OverviewPage({this.country});
+
   @override
   _OverviewPageState createState() => _OverviewPageState();
 }
@@ -28,8 +32,8 @@ class _OverviewPageState extends State<OverviewPage> {
   @override
   void initState() {
     super.initState();
-    futureGlobalStats = fetchGlobalStats();
-    futureHistoricalStats = fetchHistoricalStats();
+    futureGlobalStats = fetchGlobalStats(widget.country ?? 'all');
+    futureHistoricalStats = fetchHistoricalStats(widget.country ?? 'all');
   }
 
   @override
@@ -43,7 +47,7 @@ class _OverviewPageState extends State<OverviewPage> {
         ),
         backgroundColor: PurpleScheme.mainColor,
         title: Text(
-          'Global Overview',
+          widget.country ?? 'Global Overview',
           style: TextStyle(
             color: Colors.white
           ),
@@ -74,30 +78,21 @@ class _OverviewPageState extends State<OverviewPage> {
                   if (snapshot.hasData) {
                     return Column(
                       children: [
-                        Container(
-                          height: 150.0,
-                          child: LineGraph(
-                            title: 'Cases',
-                            lineColor: 'blue',
-                            data: snapshot.data.cases
-                          )
+                        LineGraph(
+                          title: 'Cases',
+                          lineColor: 'blue',
+                          data: snapshot.data.cases
                         ),
-                        Container(
-                          height: 150.0,
-                          child: LineGraph(
-                            title: 'Deaths',
-                            lineColor: 'red',
-                            data: snapshot.data.deaths
-                          )
+                        LineGraph(
+                          title: 'Deaths',
+                          lineColor: 'red',
+                          data: snapshot.data.deaths
                         ),
-                        Container(
-                          height: 150.0,
-                          child: LineGraph(
-                            title: 'Recovered',
-                            lineColor: 'green',
-                            data: snapshot.data.recovered
-                          )
-                        ),
+                        LineGraph(
+                          title: 'Recovered',
+                          lineColor: 'green',
+                          data: snapshot.data.recovered
+                        )
                       ]
                     );
                   } else if (snapshot.hasError) {

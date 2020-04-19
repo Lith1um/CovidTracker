@@ -14,17 +14,33 @@ class LineGraph extends StatelessWidget {
 
     List<TimeSeriesData> chartData = createChartData(data);
 
-    return charts.TimeSeriesChart(
-      [charts.Series<TimeSeriesData, DateTime>(
-          id: 'LineGraph',
-          colorFn: (_, __) => getLineColor(lineColor),
-          displayName: title,
-          domainFn: (TimeSeriesData data, _) => data.dateTime,
-          measureFn: (TimeSeriesData data, _) => data.count,
-          data: chartData,
-      )],
-      animate: false,
-      domainAxis: new charts.EndPointsTimeAxisSpec(),
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 20.0
+            )
+          ),
+          Container(
+            height: 160.0,
+            child: charts.TimeSeriesChart(
+              [charts.Series<TimeSeriesData, DateTime>(
+                  id: 'LineGraph',
+                  colorFn: (_, __) => getLineColor(lineColor),
+                  displayName: title,
+                  domainFn: (TimeSeriesData data, _) => data.dateTime,
+                  measureFn: (TimeSeriesData data, _) => data.count,
+                  data: chartData,
+              )],
+              animate: false,
+              domainAxis: new charts.EndPointsTimeAxisSpec(),
+            )
+          )
+        ]
+      )
     );
   }
 }
